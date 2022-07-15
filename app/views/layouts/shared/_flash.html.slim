@@ -1,0 +1,5 @@
+- if flash.any?
+  .container.flex-shrink-0
+    - flash.each do |type, msg|
+      .alert class="#{flash_class(type)}" role="alert"
+        == msg
