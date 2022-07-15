@@ -1,0 +1,11 @@
+en:
+  layouts:
+    shared:
+      nav:
+        sign_in: Sign in
+        sign_out: Sign out
+        home_page: Home
+        repositories: Repositories
+        app_logo: Github quality
+      footer:
+        hexlet_title: © Hexlet %{year}

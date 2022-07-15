@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'octokit'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-rails_csrf_protection'
+gem 'rails-i18n', '~> 6.0'
 gem 'rollbar'
 gem 'slim-rails'
 
@@ -38,6 +39,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Use sqlite3 as the database for Active Record
+  gem 'faker'
   gem 'sqlite3', '~> 1.4'
 end
 
@@ -60,6 +62,7 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'minitest-power_assert'
   gem 'webdrivers'
 end
 

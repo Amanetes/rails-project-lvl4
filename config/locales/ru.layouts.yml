@@ -1,0 +1,11 @@
+ru:
+  layouts:
+    shared:
+      nav:
+        sign_in: Вход
+        sign_out: Выйти
+        home_page: Главная
+        repositories: Репозитории
+        app_logo: Github quality
+      footer:
+        hexlet_title: © Хекслет %{year}

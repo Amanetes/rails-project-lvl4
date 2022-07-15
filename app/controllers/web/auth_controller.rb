@@ -7,7 +7,7 @@ module Web
 
       @user.nickname = auth[:info][:nickname]
       @user.name = auth[:info][:name]
-      @user.image_url = auth[:info][:image_url]
+      @user.image_url = auth[:info][:image]
       @user.token = auth[:credentials][:token]
 
       if @user.save

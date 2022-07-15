@@ -1,4 +1,4 @@
 footer.bg-dark.text-light.mt-auto
   .container-xl
     .row.py-2
-      = Time.zone.now
+      = t('.hexlet_title', year: Time.zone.now.year)
