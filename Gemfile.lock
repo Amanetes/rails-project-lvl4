@@ -157,6 +157,7 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.5.0)
     rexml (3.2.5)
+    rollbar (3.3.1)
     rubocop (1.31.2)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -252,6 +253,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.4)
+  rollbar
   rubocop
   rubocop-rails
   sass-rails (>= 6)
