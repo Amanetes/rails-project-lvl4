@@ -6,6 +6,7 @@ module Web
     test 'should GET home#index' do
       get root_path
       assert_response :success
+      assert_select 'title', full_title
     end
   end
 end

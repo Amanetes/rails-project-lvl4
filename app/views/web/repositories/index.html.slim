@@ -1,0 +1,21 @@
+= provide(:title, t('.title'))
+
+.mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-light.rounded-3
+      .mb-4
+        h1 = t('.title')
+        = link_to 'New', new_repository_path, class: 'btn btn-outline-primary bi-github'
+      table.table.table-striped.table-hover.mt-4
+        thead
+          tr
+            th{ scope: :col } = '#'
+            th{ scope: :col } = t('name')
+            th{ scope: :col } = t('language')
+            th{ scope: :col } = t('last_check_passed')
+        tbody
+          - @repositories.each_with_index do |repository, idx|
+            tr
+              th{ scope: :row } = idx + 1
+              td = link_to repository.name, repository_path(repository)
+              td = repository.language

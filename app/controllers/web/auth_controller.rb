@@ -2,6 +2,7 @@
 
 module Web
   class AuthController < ApplicationController
+    before_action :authenticate_user!, only: %i[logout]
     def callback
       @user = GithubAuthService.login(auth)
 

@@ -28,6 +28,8 @@ gem 'omniauth-rails_csrf_protection'
 gem 'rails-i18n', '~> 6.0'
 gem 'rollbar'
 gem 'slim-rails'
+gem 'enumerize'
+gem 'simple_form'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
