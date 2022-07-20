@@ -7,7 +7,7 @@
           as: :select,
           collection: @remote_repositories,
           required: false,
-          hint: 'Choose your fighter'
+          hint: :default
 
   .form-actions
     = f.button :submit, class: 'btn btn-success mt-4 btn-block'

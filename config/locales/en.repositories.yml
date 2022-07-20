@@ -1,0 +1,11 @@
+en:
+  web:
+    repositories:
+      index:
+        title: Repositories
+        new: New
+        name: Name
+        language: Language
+        last_check_passed: Last check passed
+      new:
+        title: Add repository

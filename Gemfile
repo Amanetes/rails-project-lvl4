@@ -22,14 +22,16 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'aasm'
+gem 'dry-container'
+gem 'enumerize'
 gem 'octokit'
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'omniauth-rails_csrf_protection'
 gem 'rails-i18n', '~> 6.0'
 gem 'rollbar'
-gem 'slim-rails'
-gem 'enumerize'
 gem 'simple_form'
+gem 'slim-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -3,6 +3,7 @@
 module Web
   class RepositoriesController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_repository, only: %i[show]
 
     def index
       @repositories = current_user.repositories
@@ -12,18 +13,20 @@ module Web
 
     def new
       @repository = current_user.repositories.build
-      @remote_repositories = Repository.fetch_repositories(current_user.token)
+      client = ApplicationContainer[:github_api].new(current_user.token)
+      @remote_repositories = client.repositories
+                                   .select { |repo| Repository.language.values.include?(repo[:language]&.downcase) }
     end
 
     def create
       @repository = current_user.repositories.build(repository_params)
       if @repository.save
-        # TODO: Repository update job
+        RepositoryUpdateJob.perform_later(@repository)
         flash[:success] = 'Репозиторий подготовлен'
         redirect_to repositories_url
       else
-        flash.now[:error] = 'Не удалось создать репозиторий'
-        render :new, status: :unprocessable_entity
+        flash[:notice] = "Репозиторий уже существует"
+        redirect_to repositories_url, status: :see_other
       end
     end
 

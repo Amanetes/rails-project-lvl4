@@ -3,14 +3,11 @@
 class Repository < ApplicationRecord
   extend Enumerize
 
-  enumerize :language, in: %i[javascript]
-
   belongs_to :user
 
-  validates :github_id, presence: true, uniqueness: true, allow_nil: true
+  validates :github_id, presence: true
+  validates :github_id, uniqueness: true
 
-  def self.fetch_repositories(token)
-    client = Octokit::Client.new(access_token: token, per_page: 100)
-    client.repos.select { |repo| Repository.language.values.include?(repo[:language]&.downcase) }
-  end
+  enumerize :language, in: %i[javascript]
+
 end

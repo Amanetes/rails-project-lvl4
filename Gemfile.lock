@@ -10,6 +10,8 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.2.0)
+      concurrent-ruby (~> 1.0)
     actioncable (6.1.6.1)
       actionpack (= 6.1.6.1)
       activesupport (= 6.1.6.1)
@@ -93,6 +95,8 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    dry-container (0.10.0)
+      concurrent-ruby (~> 1.0)
     enumerize (2.5.0)
       activesupport (>= 3.2)
     erubi (1.10.0)
@@ -156,6 +160,7 @@ GEM
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
+    open3 (0.1.1)
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
@@ -307,10 +312,12 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  aasm
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
   dotenv-rails
+  dry-container
   enumerize
   faker
   jbuilder (~> 2.7)
@@ -319,6 +326,7 @@ DEPENDENCIES
   octokit
   omniauth-github!
   omniauth-rails_csrf_protection
+  open3
   pg
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)

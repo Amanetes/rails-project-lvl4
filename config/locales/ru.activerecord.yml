@@ -1,0 +1,14 @@
+ru:
+  activerecord:
+    models:
+      user:
+        one: Пользователь
+        few: Пользователей
+        other: Пользователи
+      repository:
+        one: Репозиторий
+        few: Репозиториев
+        other: Репозитории
+    attributes:
+      repository:
+        name: Название

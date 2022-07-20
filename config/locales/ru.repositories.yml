@@ -1,0 +1,11 @@
+ru:
+  web:
+    repositories:
+      index:
+        title: Репозитории
+        new: Добавить
+        name: Название
+        language: Язык
+        last_check_passed: Статус проверки
+      new:
+        title: Добавить репозиторий
