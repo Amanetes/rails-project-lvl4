@@ -13,7 +13,8 @@
     ul.nav.nav-pills
       - if signed_in?
         li.nav-item.d-flex
-          = image_tag current_user.image_url, width: 40, class: 'border border-dark rounded-circle'
+          - if current_user.image_url.present?
+            = image_tag current_user.image_url, width: 40, class: 'border border-dark rounded-circle'
           = link_to current_user.email, "#", class: 'nav-link text-secondary', rel: 'nofollow'
         li.nav-item
           = link_to t('.sign_out'), logout_path, method: :delete, class: 'nav-link link-dark'

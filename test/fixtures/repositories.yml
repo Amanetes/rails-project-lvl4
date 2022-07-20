@@ -1,0 +1,7 @@
+one:
+  name: <%= Faker::Lorem.word %>
+  language: <%= Faker::ProgrammingLanguage.name %>
+  user: one
+  github_id: <%= Faker::Number.number(digits: 9) %>
+  clone_url: <%= Faker::Internet.url %>
+  full_name: Faker::Lorem.sentence
