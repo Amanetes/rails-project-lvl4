@@ -33,5 +33,13 @@ module Web
       assert user
       assert signed_in?
     end
+
+    test 'logout' do
+      @user = sign_in(users(:one))
+      delete logout_path(@user)
+
+      assert { !signed_in? }
+      assert_redirected_to root_url
+    end
   end
 end

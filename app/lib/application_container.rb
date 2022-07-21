@@ -4,8 +4,8 @@ class ApplicationContainer
   extend Dry::Container::Mixin
 
   if Rails.env.test?
-    register :github_api, -> { GithubApiStub }
+    register :octokit_client_api, -> { OctokitClientApiStub }
   else
-    register :github_api, -> { GithubApi }
+    register :octokit_client_api, -> { OctokitClientApi }
   end
 end

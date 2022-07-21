@@ -24,7 +24,7 @@ module Web
     def logout
       sign_out
       flash[:notice] = 'Вы успешно разлогинились'
-      redirect_to root_path
+      redirect_to root_path, status: :see_other
     end
 
     private

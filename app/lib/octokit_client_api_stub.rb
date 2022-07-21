@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GithubApiStub
+class OctokitClientApiStub
   def initialize(_token);end
 
   def repositories

@@ -13,7 +13,7 @@ module Web
 
     def new
       @repository = current_user.repositories.build
-      client = ApplicationContainer[:github_api].new(current_user.token)
+      client = ApplicationContainer[:octokit_client_api].new(current_user.token)
       @remote_repositories = client.repositories
                                    .select { |repo| Repository.language.values.include?(repo[:language]&.downcase) }
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GithubApi
+class OctokitClientApi
   attr_accessor :client
 
   def initialize(token)

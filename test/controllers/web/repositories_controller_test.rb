@@ -24,5 +24,15 @@ module Web
       get new_repository_path
       assert_response :success
     end
+
+    test 'should POST repositories#create' do
+      assert_difference 'Repository.count', 1 do
+        post repositories_url, params: { repository:
+                                         { github_id: 1234 } }
+      end
+      repository = Repository.find_by! github_id: 1234
+      assert { repository }
+      assert_redirected_to repositories_url
+    end
   end
 end

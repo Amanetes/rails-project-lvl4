@@ -4,7 +4,7 @@ class Repository
   class UpdateService
     class << self
       def update(repository)
-        client = ApplicationContainer[:github_api].new(repository.user.token)
+        client = ApplicationContainer[:octokit_client_api].new(repository.user.token)
         remote_repo = client.repository(repository.github_id)
         attributes = build_attributes(remote_repo)
         repository.update!(attributes)
