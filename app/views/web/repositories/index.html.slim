@@ -18,4 +18,5 @@
             tr
               th{ scope: :row } = idx + 1
               td = link_to repository.name, repository_path(repository)
-              td = repository.language
+              td = repository.language&.text
+              td = render('layouts/shared/spinner')

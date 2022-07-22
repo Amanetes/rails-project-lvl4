@@ -15,7 +15,10 @@ module Web
       @repository = current_user.repositories.build
       client = ApplicationContainer[:octokit_client_api].new(current_user.token)
       @remote_repositories = client.repositories
-                                   .select { |repo| Repository.language.values.include?(repo[:language]&.downcase) }
+                                   .select do |repo|
+        Repository.language.values.include?(repo[:language]&.downcase) &&
+          current_user.repositories.map(&:name).exclude?(repo[:name])
+      end
     end
 
     def create
@@ -25,7 +28,7 @@ module Web
         flash[:success] = 'Репозиторий подготовлен'
         redirect_to repositories_url
       else
-        flash[:notice] = "Репозиторий уже существует"
+        flash[:notice] = 'Репозиторий уже существует'
         redirect_to repositories_url, status: :see_other
       end
     end

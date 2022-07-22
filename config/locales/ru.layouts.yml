@@ -9,3 +9,5 @@ ru:
         app_logo: Github quality
       footer:
         hexlet_title: © Хекслет %{year}
+      spinner:
+        loading: Загрузка...

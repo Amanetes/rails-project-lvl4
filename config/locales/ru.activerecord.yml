@@ -12,3 +12,9 @@ ru:
     attributes:
       repository:
         name: Название
+      repository/check:
+        aasm_state:
+          created: Создана
+          checking: На проверке
+          finished: Проверка завершена
+          failed: Ошибка

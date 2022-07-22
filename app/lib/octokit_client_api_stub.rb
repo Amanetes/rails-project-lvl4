@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class OctokitClientApiStub
-  def initialize(_token);end
+  def initialize(token)
+    @token = token
+  end
 
   def repositories
     repo_stub = get_fixture('repositories.json')
-    JSON.parse(File.read(repo_stub)).map(&:symbolize_keys)
+    repo_stub_content = File.read(repo_stub)
+    JSON.parse(repo_stub_content).map(&:symbolize_keys)
   end
 
   private

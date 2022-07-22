@@ -9,3 +9,12 @@ en:
         last_check_passed: Last check passed
       new:
         title: Add repository
+      show:
+        check: Check
+        name: Name
+        language: Language
+        created_at: Created at
+        updated_at: Updated at
+        state: State
+        Reference: Reference
+        check_passed: Check passed

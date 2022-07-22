@@ -1,11 +1,14 @@
-= provide(:title, t('.title'))
+= provide(:title, @repository.name)
 
 .mt-4.mb-5.pb-5
   .container
     .p-4.align-items-center.border.shadow.bg-light.rounded-3
       .mb-4
-        h1 = @repository.name
-        = link_to 'Check', '#', class: 'btn btn-primary mb-4', rel: 'nofollow'
+        h1.fw-bold = @repository.name
+        = link_to t('.check'), repository_checks_path(@repository),
+                method: :post,
+                class: 'btn btn-primary my-2',
+                rel: 'nofollow'
       p
         strong.me-2
           = t('.name')
@@ -13,22 +16,31 @@
       p
         strong.me-2
           = t('.language')
-        = @repository.language
+        = @repository.language&.text
       p
         strong.me-2
           = t('.created_at')
         = l(@repository.created_at, format: :long)
       p
         strong.me-2
-          = t('updated_at')
+          = t('.updated_at')
         = l(@repository.updated_at, format: :long)
       hr
       table.table.table-striped
         thead
           tr
-            th
             th{ scope: :col } = '#'
-            th{ scope: :col } = '#'
-            th{ scope: :col } = '#'
-            th{ scope: :col } = '#'
+            th{ scope: :col } = t('.state')
+            th{ scope: :col } = t('.reference')
+            th{ scope: :col } = t('.check_passed')
+            th{ scope: :col } = t('.created_at')
         tbody
+          - if @repository.checks.present?
+            - @repository.checks.each do |check|
+              tr
+                td = link_to check.id, repository_check_path(@repository, check)
+                td = check.aasm.human_state
+                td = link_to 'Commit', root_path
+                td = boolean_i18n(check.passed)
+                td = l(check.created_at, format: :short)
+

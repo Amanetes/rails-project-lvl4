@@ -30,4 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  app_name: Анализатор качества репозиториев
+  app_name: Github Quality Analysis Tool
+  enumerize:
+    repository:
+      language:
+        javascript: JavaScript
+        ruby: Ruby
+  'true': True
+  'false': False

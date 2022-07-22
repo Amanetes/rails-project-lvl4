@@ -1,2 +1,9 @@
 ru:
   app_name: Анализатор качества репозиториев
+  enumerize:
+    repository:
+      language:
+        javascript: JavaScript
+        ruby: Ruby
+  'true': Да
+  'false': Нет

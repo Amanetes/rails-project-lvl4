@@ -9,3 +9,5 @@ en:
         app_logo: Github quality
       footer:
         hexlet_title: © Hexlet %{year}
+      spinner:
+        loading: Loading...

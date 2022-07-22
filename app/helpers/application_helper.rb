@@ -16,4 +16,8 @@ module ApplicationHelper
     }
     mapping[level.to_sym]
   end
+
+  def boolean_i18n(value)
+    t((value == true).to_s)
+  end
 end

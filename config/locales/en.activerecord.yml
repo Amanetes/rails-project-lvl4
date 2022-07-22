@@ -1,0 +1,18 @@
+en:
+  activerecord:
+    models:
+      user:
+        one: User
+        other: Users
+      repository:
+        one: Repository
+        other: Repositories
+    attributes:
+      repository:
+        name: Name
+      repository/check:
+        aasm_state:
+          created: Created
+          checking: Checking
+          finished: Finished
+          failed: Failed

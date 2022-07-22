@@ -9,3 +9,12 @@ ru:
         last_check_passed: Статус проверки
       new:
         title: Добавить репозиторий
+      show:
+        check: Запустить проверку
+        name: Название
+        language: Язык
+        created_at: Дата создания
+        updated_at: Дата обновления
+        state: Статус
+        reference: Ссылка
+        check_passed: Результат проверки

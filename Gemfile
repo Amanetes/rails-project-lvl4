@@ -58,6 +58,7 @@ group :development do
   gem 'dotenv-rails'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+  gem 'slim_lint', require: false
   gem 'spring'
 end
 
@@ -68,6 +69,7 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'minitest-power_assert'
   gem 'webdrivers'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
