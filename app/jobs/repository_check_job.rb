@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class RepositoryCheckJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    # Do something later
+  def perform(check)
+    Repository::CheckService.run_check(check)
   end
 end

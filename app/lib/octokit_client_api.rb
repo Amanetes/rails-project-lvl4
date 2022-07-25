@@ -11,6 +11,10 @@ class OctokitClientApi
     @client.repos
   end
 
+  def commits(github_id)
+    @client.list_commits(github_id)
+  end
+
   def repository(github_id)
     @client.repo(github_id)
   end

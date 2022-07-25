@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-
+# Загрузка репозитория
+# TODO перенести в сервис?
 class RepositoryLoader
   class << self
     def clone(repository)

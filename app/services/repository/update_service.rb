@@ -9,6 +9,8 @@ class Repository
         attributes = build_attributes(remote_repo)
         repository.update!(attributes)
         repository.save!
+      rescue Octokit::NotFound => e
+        Rails.logger.debug(e.full_message)
       end
 
       def build_attributes(remote_repo)

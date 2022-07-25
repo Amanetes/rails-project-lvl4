@@ -5,5 +5,5 @@ ru:
       language:
         javascript: JavaScript
         ruby: Ruby
-  'true': Да
-  'false': Нет
+  'true': Пройдена
+  'false': Не пройдена

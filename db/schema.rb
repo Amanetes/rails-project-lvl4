@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_21_070657) do
+ActiveRecord::Schema.define(version: 2022_07_25_072920) do
 
   create_table "repositories", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2022_07_21_070657) do
     t.json "result", default: [], null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "reference_url"
+    t.string "reference_sha"
     t.index ["repository_id"], name: "index_repository_checks_on_repository_id"
   end
 

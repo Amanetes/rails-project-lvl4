@@ -18,6 +18,9 @@ fix:
 deploy:
 	git push heroku main
 
+heroku-logs:
+	heroku logs --tail
+
 test:
 	NODE_ENV=test bin/rails test
 

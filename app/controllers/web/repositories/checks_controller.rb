@@ -12,6 +12,7 @@ module Web
         @check = @resource_repository.checks.build
         if @check.save
           flash[:notice] = 'Проверка запущена'
+          RepositoryCheckJob.perform_later(@check)
           redirect_to @resource_repository
         else
           flash.now[:error] = 'Не удалось запустить проверку'
