@@ -11,7 +11,7 @@ class Repository
         check_results = repository_check_manager.check(repository)
         last_commit = client.commits(repository.github_id).first
 
-        check.update!(
+        check.update(
           passed: check_results[:issues_count].zero?,
           issues_count: check_results[:issues_count],
           result: check_results[:issues],

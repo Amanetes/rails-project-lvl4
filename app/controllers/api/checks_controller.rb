@@ -7,7 +7,7 @@ module Api
     def create
       @repository = Repository.find_by(full_name: params[:repository][:full_name])
 
-      return head :not_found if repository.nil?
+      return head :not_found if @repository.nil?
 
       @check = @repository.checks.build
       RepositoryCheckJob.perform_later(check) if @check.save

@@ -16,7 +16,7 @@ class Repository
       def build_attributes(remote_repo)
         {
           name: remote_repo[:name],
-          language: remote_repo[:language].downcase,
+          language: remote_repo[:language]&.downcase,
           full_name: remote_repo[:full_name],
           clone_url: remote_repo[:clone_url]
         }
