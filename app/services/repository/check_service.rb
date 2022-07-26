@@ -14,7 +14,7 @@ class Repository
         check.update(
           passed: check_results[:issues_count].zero?,
           issues_count: check_results[:issues_count],
-          result: check_results[:issues] || [],
+          result: check_results[:issues],
           reference_url: last_commit[:html_url],
           reference_sha: last_commit[:sha][0, 7]
         )

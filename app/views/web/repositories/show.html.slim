@@ -43,4 +43,3 @@
                 td = check.reference_sha.present? ? (link_to check.reference_sha, check.reference_url) : t('.loading')
                 td = boolean_i18n(check.passed)
                 td = l(check.created_at, format: :short)
-

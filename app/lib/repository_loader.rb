@@ -10,6 +10,6 @@ module RepositoryLoader
   end
 
   def get_repository_path(repository)
-    Rails.root.join('tmp', 'repositories', repository.full_name)
+    Rails.root.join("tmp/repositories/#{repository.full_name}")
   end
 end
