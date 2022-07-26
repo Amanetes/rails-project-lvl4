@@ -11,6 +11,12 @@ class OctokitClientApiStub
     JSON.parse(repo_stub_content).map(&:symbolize_keys)
   end
 
+  def repository
+    repo_stub = get_fixture_path('repository.json')
+    repo_stub_content = File.read(repo_stub)
+    JSON.parse(repo_stub_content).symbolize_keys
+  end
+
   def commits(_github_id)
     commits_path = get_fixture_path('commits.json')
     commits_stub_content = File.read(commits_path)
