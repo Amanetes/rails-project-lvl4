@@ -1,24 +1,57 @@
 # frozen_string_literal: true
 
-# TODO: Класс прогоняет репозитории линтерами, а сам вывозов класса в Джобе
 class RepositoryCheckManager
+  extend RepositoryLoader
   class << self
     def check(repository)
-      RepositoryLoader.clone(repository)
+      clone(repository)
       repository_path = get_repository_path(repository)
       linter = {
-        javascript: ->(path) { BashRunner.run("yarn run eslint #{path} --config .eslintrc.yml --format json --no-eslintrc") },
-        ruby: ->(path) { BashRunner.run("bundle exec rubocop #{path} --format-json -c .rubocop.yml") }
+        javascript: ->(path) { run_eslint_check(path) },
+        ruby: ->(path) { run_rubocop_check(path) }
       }
-      check_result = JSON.parse(linter[repository.language.to_sym].call(repository_path))
-      RepositoryLoader.remove(repository)
-      JSON.pretty_generate(check_result)
+      check_result = linter[repository.language.to_sym].call(repository_path)
+      remove(repository)
+      check_result
     end
 
-    private
-
-    def get_repository_path(repository)
-      Rails.root.join('tmp', 'repositories', repository.full_name)
+    def run_eslint_check(path)
+      cmd = "npx eslint #{path} --config .eslintrc.yml --format json --no-eslintrc"
+      output = BashRunner.run(cmd)
+      parsed_result = JSON.parse(output, symbolize_names: true)
+      offense_output = parsed_result.select { |issue| issue[:errorCount].positive? }
+                                    .flat_map do |issue|
+        issue[:messages].each_with_object([]) do |msg, acc|
+          acc << {
+            file_path: issue[:filePath],
+            rule_id: msg[:ruleId],
+            message: msg[:message],
+            line: msg[:line],
+            column: msg[:column]
+          }
+        end
+      end
+      { issues: JSON.generate(offense_output), issues_count: parsed_result.reduce(0) { |acc, issue| acc + issue[:errorCount] } }
     end
-  end
+
+    def run_rubocop_check(path)
+      cmd = "rubocop #{path} --format json -c .rubocop.yml"
+      output = BashRunner.run(cmd)
+      parsed_result = JSON.parse(output, symbolize_names: true)
+      offense_output = parsed_result[:files]
+                       .select { |issue| issue[:offenses].present? }
+                       .flat_map do |issue|
+        issue[:offenses].each_with_object([]) do |offense, acc|
+          acc << {
+            file_path: issue[:path],
+            rule_id: offense[:cop_name],
+            message: offense[:message],
+            line: offense[:location][:start_line],
+            column: offense[:location][:start_column]
+          }
+        end
+      end
+      { issues: JSON.generate(offense_output), issues_count: parsed_result[:summary][:offense_count] }
+    end
+    end
 end

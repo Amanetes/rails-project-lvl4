@@ -6,7 +6,7 @@ A project that helps to automatically monitor the quality of repositories on the
 
 ## Installation
 
-Clone this repository `git clone git@github.com:Amanetes/rails-project-lvl3.git`
+Clone this repository `git clone git@github.com:Amanetes/rails-project-lvl4.git`
 
 ## Usage
 
