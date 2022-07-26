@@ -1,0 +1,5 @@
+= t('.greeting', nickname: @user.nickname)
+= "\n"
+= t('.description', repository: @check.repository.name)
+= "\n"
+= link_to t('.info'), repository_check_url(@check.repository, @check)

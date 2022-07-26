@@ -1,0 +1,5 @@
+h3 = t('.greeting', nickname: @user.nickname)
+
+p = t('.description', repository: @check.repository.name)
+
+= link_to t('.info'), repository_check_url(@check.repository, @check)

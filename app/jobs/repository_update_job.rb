@@ -5,7 +5,5 @@ class RepositoryUpdateJob < ApplicationJob
 
   def perform(repository)
     Repository::UpdateService.update(repository)
-  rescue Octokit::NotFound => e
-    Rails.logger.debug(e.full_message)
   end
 end

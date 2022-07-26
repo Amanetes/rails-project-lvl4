@@ -1,0 +1,7 @@
+en:
+  repository_check_mailer:
+    check_failed:
+      subject: "%{repository} quality report"
+      greeting: Hello, %{nickname}!
+      description: "%{repository} checks failed"
+      info: Please, follow the link for detailed information

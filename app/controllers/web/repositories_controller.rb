@@ -25,6 +25,7 @@ module Web
       @repository = current_user.repositories.build(repository_params)
       if @repository.save
         RepositoryUpdateJob.perform_later(@repository)
+        CreateWebhookJob.perform_later(@repository)
         flash[:success] = 'Репозиторий подготовлен'
         redirect_to repositories_url
       else

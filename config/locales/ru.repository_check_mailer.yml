@@ -1,0 +1,7 @@
+ru:
+  repository_check_mailer:
+    check_failed:
+      subject: Отчет о проверке репозитория %{repository}
+      greeting: Здравствуйте, %{nickname}!
+      description: К сожалению, при проверке репозитория %{repository} обнаружились ошибки
+      info: Перейдите по ссылке, чтобы узнать подроности
