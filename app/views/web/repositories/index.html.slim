@@ -12,11 +12,11 @@
             th{ scope: :col } = '#'
             th{ scope: :col } = t('.name')
             th{ scope: :col } = t('.language')
-            th{ scope: :col } = t('.last_check_passed')
+            th{ scope: :col } = t('.last_check')
         tbody
           - @repositories.each_with_index do |repository, idx|
             tr
               th{ scope: :row } = idx + 1
-              td = link_to repository.name, repository_path(repository)
+              td = repository.name.present? ? link_to(repository.name, repository_path(repository)) : t('.loading')
               td = repository.language&.text
-              td = render('layouts/shared/spinner')
+              td = repository.checks.empty? ? t('.no_checks') : boolean_i18n(repository.checks.last.passed?)

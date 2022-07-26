@@ -31,7 +31,7 @@ class RepositoryCheckManager
           }
         end
       end
-      { issues: JSON.generate(offense_output), issues_count: parsed_result.reduce(0) { |acc, issue| acc + issue[:errorCount] } }
+      { issues: offense_output, issues_count: parsed_result.reduce(0) { |acc, issue| acc + issue[:errorCount] } }
     end
 
     def run_rubocop_check(path)
@@ -51,7 +51,7 @@ class RepositoryCheckManager
           }
         end
       end
-      { issues: JSON.generate(offense_output), issues_count: parsed_result[:summary][:offense_count] }
+      { issues: offense_output, issues_count: parsed_result[:summary][:offense_count] }
     end
     end
 end

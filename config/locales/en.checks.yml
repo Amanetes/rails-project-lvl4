@@ -1,0 +1,7 @@
+en:
+  web:
+    repositories:
+      checks:
+        show:
+          title: "Check #%{id}"
+          back: Back

@@ -1,0 +1,11 @@
+ru:
+  web:
+    repositories:
+      checks:
+        show:
+          title: "Проверка #%{id}"
+          back: Назад
+          created_at: Дата создания
+          state: Статус проверки
+          check_passed: Результат проверки
+          issues_count: Количество проблем

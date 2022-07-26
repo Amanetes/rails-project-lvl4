@@ -6,7 +6,9 @@ ru:
         new: Добавить
         name: Название
         language: Язык
-        last_check_passed: Статус проверки
+        last_check: Статус проверки
+        no_checks: Проверок не было
+        loading: Идет загрузка...
       new:
         title: Добавить репозиторий
       show:
@@ -18,3 +20,4 @@ ru:
         state: Статус
         reference: Ссылка
         check_passed: Результат проверки
+        loading: Идет загрузка...

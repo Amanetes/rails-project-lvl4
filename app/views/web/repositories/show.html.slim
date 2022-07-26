@@ -40,7 +40,7 @@
               tr
                 td = link_to check.id, repository_check_path(@repository, check)
                 td = check.aasm.human_state
-                td = link_to 'Commit', root_path
+                td = check.reference_sha.present? ? (link_to check.reference_sha, check.reference_url) : t('.loading')
                 td = boolean_i18n(check.passed)
                 td = l(check.created_at, format: :short)
 
