@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_050728) do
 
   create_table "repositories", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "github_id", null: false
+    t.bigint "github_id", null: false
     t.string "name"
     t.string "language"
     t.string "full_name"
