@@ -16,9 +16,12 @@ class RepositoryCheckManager
     end
 
     def run_eslint_check(path)
+      Rails.logger.info('RUN COMMAND')
       cmd = "node_modules/eslint/bin/eslint.js #{path} --config .eslintrc.yml --format json --no-eslintrc"
       output = BashRunner.run(cmd)
+      Rails.logger.info(output)
       parsed_result = JSON.parse(output.presence || '[]')
+      Rails.logger.info(parsed_result)
       offense_output = parsed_result.select { |issue| issue['errorCount'].positive? }
                                     .each_with_object([]) do |issue, acc|
         acc << {
@@ -54,7 +57,7 @@ class RepositoryCheckManager
           end
         }
       end
-      { issues: offense_output, issues_count: parsed_result['summary']['offense_count'] }
+      { issues: offense_output, issues_count: parsed_result['summary']['offense_count'].to_i }
     end
   end
 end
