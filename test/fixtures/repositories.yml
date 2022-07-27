@@ -6,3 +6,12 @@ one:
     <%= Faker::Number.number(digits: 5) %>
   clone_url: <%= Faker::Internet.url %>
   full_name: Faker::Lorem.sentence
+
+two:
+  name: <%= Faker::Lorem.word %>
+  language: <%= Faker::ProgrammingLanguage.name %>
+  user: two
+  github_id: |
+    <%= Faker::Number.number(digits: 5) %>
+  clone_url: <%= Faker::Internet.url %>
+  full_name: Faker::Lorem.sentence
