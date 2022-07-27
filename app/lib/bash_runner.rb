@@ -3,9 +3,10 @@
 class BashRunner
   class << self
     def run(cmd)
-      Open3.popen3(cmd) do |_stdin, stdout, _stderr, _wait_thr|
+      output = Open3.popen3(cmd) do |_stdin, stdout, _stderr, _wait_thr|
         stdout.read
       end
+      JSON.parse(output.presence || '{}')
     end
   end
 end
