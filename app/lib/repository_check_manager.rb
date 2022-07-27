@@ -41,22 +41,24 @@ class RepositoryCheckManager
     def run_rubocop_check(path)
       cmd = "bundle exec rubocop #{path} --format json -c .rubocop.yml"
       output = BashRunner.run(cmd)
-      parsed_result = output.present? ? JSON.parse(output, symbolize_names: true) : JSON.parse('[]', symbolize_names: true)
-      offense_output = parsed_result[:files].select { |issue| issue[:offenses].present? }
-                                            .each_with_object([]) do |issue, acc|
+      parsed_result = output.present? ? JSON.parse(output) : JSON.parse('[]')
+    rescue JSON::ParserError
+      Rails.logger.info parsed_result
+      offense_output = parsed_result['files'].select { |issue| issue['offenses'].present? }
+                                             .each_with_object([]) do |issue, acc|
         acc << {
-          file_path: issue[:path],
-          messages: issue[:offenses].map do |msg|
+          file_path: issue['path'],
+          messages: issue['offenses'].map do |msg|
             {
-              rule_id: msg[:cop_name],
-              message: msg[:message],
-              line: msg[:location][:start_line],
-              column: msg[:location][:start_column]
+              rule_id: msg['cop_name'],
+              message: msg['message'],
+              line: msg['location']['start_line'],
+              column: msg['location']['start_column']
             }
           end
         }
       end
-      { issues: offense_output, issues_count: parsed_result[:summary][:offense_count] }
+      { issues: offense_output, issues_count: parsed_result['summary']['offense_count'] }
     end
   end
 end
