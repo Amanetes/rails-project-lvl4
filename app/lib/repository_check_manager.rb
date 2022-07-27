@@ -42,8 +42,6 @@ class RepositoryCheckManager
       cmd = "bundle exec rubocop #{path} --format json -c .rubocop.yml"
       output = BashRunner.run(cmd)
       parsed_result = output.present? ? JSON.parse(output, symbolize_names: true) : JSON.parse('[]', symbolize_names: true)
-    rescue JSON::ParserError
-      Rails.logger.info parsed_result
       offense_output = parsed_result[:files].select { |issue| issue[:offenses].present? }
                                             .each_with_object([]) do |issue, acc|
         acc << {
