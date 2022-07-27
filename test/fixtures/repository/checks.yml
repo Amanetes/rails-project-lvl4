@@ -1,6 +1,6 @@
-javascript:
+ruby:
   repository: one
   aasm_state: finished
-  result: []
   passed: false
-  issues_count: 0
+  result: <%= File.read('test/fixtures/files/rubocop_output.json') %>
+  issues_count: 1

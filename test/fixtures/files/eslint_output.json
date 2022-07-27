@@ -1,0 +1,14 @@
+[
+  {
+    "file_path": "tmp/repositories/Amanetes/ipgeobase/ipgeobase.gemspec",
+  "messages": [
+    {
+      "rule_id": "Gemspec/RequiredRubyVersion",
+      "message": `required_ruby_version` and `TargetRubyVersion` (3.0, which may be specified in .rubocop.yml) should be equal.",
+    :line=>14,
+    :column=>32}]},
+  {:file_path=>"tmp/repositories/Amanetes/ipgeobase/lib/ipgeobase/ip_metadata.rb",
+  :messages=>[{:rule_id=>"Rails/ContentTag", :message=>"Use `tag.query` instead of `tag('query')`.", :line=>8, :column=>3}]},
+  {:file_path=>"tmp/repositories/Amanetes/ipgeobase/test/test_ipgeobase.rb",
+  :messages=>[{:rule_id=>"Rails/RefuteMethods", :message=>"Prefer `assert_not_nil` over `refute_nil`.", :line=>7, :column=>5}]}],
+:issues_count=>3}
