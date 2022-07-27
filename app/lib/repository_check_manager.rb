@@ -18,7 +18,7 @@ class RepositoryCheckManager
     def run_eslint_check(path)
       cmd = "node_modules/eslint/bin/eslint.js #{path} --config .eslintrc.yml --format json --no-eslintrc"
       output = BashRunner.run(cmd)
-      parsed_result = JSON.parse(output.first, symbolize_names: true)
+      parsed_result = JSON.parse(output.presence, symbolize_names: true) || '[]'
       offense_output = parsed_result.select { |issue| issue[:errorCount].positive? }
                                     .each_with_object([]) do |issue, acc|
         acc << {
@@ -39,7 +39,7 @@ class RepositoryCheckManager
     def run_rubocop_check(path)
       cmd = "bundle exec rubocop #{path} --format json -c .rubocop.yml"
       output = BashRunner.run(cmd)
-      parsed_result = JSON.parse(output.first, symbolize_names: true)
+      parsed_result = JSON.parse(output.presence, symbolize_names: true) || '[]'
       offense_output = parsed_result[:files].select { |issue| issue[:offenses].present? }
                                             .each_with_object([]) do |issue, acc|
         acc << {
