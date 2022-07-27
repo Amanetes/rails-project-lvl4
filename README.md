@@ -13,4 +13,4 @@ Clone this repository `git clone git@github.com:Amanetes/rails-project-lvl4.git`
 Run `make setup` and then `make start`
 
 ## Please follow the link below to access the app
-[Bulletin Board](https://amanetes-github-quality.herokuapp.com/ "The chase is better than the catch.")
+[GitHub Quality](https://amanetes-github-quality.herokuapp.com/ "The chase is better than the catch.")
