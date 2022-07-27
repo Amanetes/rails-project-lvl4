@@ -26,10 +26,10 @@ module Web
       if @repository.save
         RepositoryUpdateJob.perform_later(@repository)
         CreateWebhookJob.perform_later(@repository)
-        flash[:success] = 'Репозиторий подготовлен'
+        flash[:success] = t('.create')
         redirect_to repositories_url
       else
-        flash[:notice] = 'Репозиторий уже существует'
+        flash[:notice] = t('.exists')
         redirect_to repositories_url, status: :see_other
       end
     end

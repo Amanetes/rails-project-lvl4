@@ -13,17 +13,17 @@ module Web
 
       if @user.save
         sign_in @user
-        flash[:notice] = 'Вы залогинены'
+        flash[:notice] = t('.login')
         redirect_to root_url
       else
-        flash.now[:error] = 'Не удалось залогиниться'
+        flash.now[:error] = t('.auth_error')
         redirect_back(fallback_location: root_path)
       end
     end
 
     def logout
       sign_out
-      flash[:notice] = 'Вы успешно разлогинились'
+      flash[:notice] = t('.sign_out')
       redirect_to root_path, status: :see_other
     end
 

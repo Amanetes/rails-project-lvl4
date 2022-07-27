@@ -23,7 +23,7 @@ module AuthConcern
   def authenticate_user!
     return if signed_in?
 
-    flash[:warn] = 'Необходима аутентификация!'
+    flash[:warn] = t('web.auth.auth_error')
     redirect_to root_path
   end
 end

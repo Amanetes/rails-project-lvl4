@@ -1,0 +1,13 @@
+en:
+  web:
+    auth:
+      auth_error: Authentication error
+      login: You successfully logged in
+      login_error: Log in error
+      sign_out: You successfully signed out
+    repositories:
+      create: Repository created
+      exists: Repository already exists
+      checks:
+        create: Check created
+        error: Check error
