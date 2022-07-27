@@ -4,6 +4,8 @@ class Repository
   class CheckService
     class << self
       def run_check(check)
+        return if check.blank?
+
         repository = check.repository
         client = ApplicationContainer[:octokit_client_api].new(repository.user.token)
         repository_check_manager = ApplicationContainer[:repository_check_manager]

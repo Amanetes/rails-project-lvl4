@@ -5,3 +5,10 @@ en:
         show:
           title: "Check #%{id}"
           back: Back
+          created_at: Created at
+          state: Status
+          check_passed: Last check passed
+          issues_count: Issues count
+          message: Messages
+          rule: Rule
+          line_column: Line column
