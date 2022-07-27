@@ -16,7 +16,7 @@ class RepositoryCheckManager
     end
 
     def run_eslint_check(path)
-      cmd = "npx eslint #{path} --config .eslintrc.yml --format json --no-eslintrc"
+      cmd = "node_modules/eslint/bin/eslint.js #{path} --config .eslintrc.yml --format json --no-eslintrc"
       output = BashRunner.run(cmd)
       parsed_result = JSON.parse(output, symbolize_names: true)
     rescue JSON::ParserError
@@ -39,7 +39,7 @@ class RepositoryCheckManager
     end
 
     def run_rubocop_check(path)
-      cmd = "rubocop #{path} --format json -c .rubocop.yml"
+      cmd = "bundle exec rubocop #{path} --format json -c .rubocop.yml"
       output = BashRunner.run(cmd)
       parsed_result = JSON.parse(output, symbolize_names: true)
     rescue JSON::ParserError
