@@ -9,3 +9,6 @@ ru:
           state: Статус проверки
           check_passed: Результат проверки
           issues_count: Количество проблем
+          message: Сообщения
+          rule: Правило
+          line_column: Строка/Столбец

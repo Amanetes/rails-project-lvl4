@@ -31,10 +31,11 @@
         tbody
           - if @check.result.present?
             - @check.result.each do |issue|
-              tr
+              tr.table-danger
                 td(colspan="3")
                   = link_to issue['file_path'], 'https://github.com'
-                  tr
-                    td = issue['message']
-                    td = issue['rule_id']
-                    td = "#{issue['line']}:#{issue['column']}"
+                  - issue['messages'].each do |msg|
+                    tr
+                      td = msg['message']
+                      td = msg['rule_id']
+                      td = "#{msg['line']}:#{msg['column']}"

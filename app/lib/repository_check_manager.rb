@@ -20,16 +20,18 @@ class RepositoryCheckManager
       output = BashRunner.run(cmd)
       parsed_result = JSON.parse(output, symbolize_names: true)
       offense_output = parsed_result.select { |issue| issue[:errorCount].positive? }
-                                    .flat_map do |issue|
-        issue[:messages].each_with_object([]) do |msg, acc|
-          acc << {
-            file_path: issue[:filePath],
-            rule_id: msg[:ruleId],
-            message: msg[:message],
-            line: msg[:line],
-            column: msg[:column]
-          }
-        end
+                                    .each_with_object([]) do |issue, acc|
+        acc << {
+          file_path: issue[:filePath],
+          messages: issue[:messages].map do |msg|
+                      {
+                        rule_id: msg[:ruleId],
+                        message: msg[:message],
+                        line: msg[:line],
+                        column: msg[:column]
+                      }
+                    end
+        }
       end
       { issues: offense_output, issues_count: parsed_result.reduce(0) { |acc, issue| acc + issue[:errorCount] } }
     end
@@ -38,18 +40,19 @@ class RepositoryCheckManager
       cmd = "rubocop #{path} --format json -c .rubocop.yml"
       output = BashRunner.run(cmd)
       parsed_result = JSON.parse(output, symbolize_names: true)
-      offense_output = parsed_result[:files]
-                       .select { |issue| issue[:offenses].present? }
-                       .flat_map do |issue|
-        issue[:offenses].each_with_object([]) do |offense, acc|
-          acc << {
-            file_path: issue[:path],
-            rule_id: offense[:cop_name],
-            message: offense[:message],
-            line: offense[:location][:start_line],
-            column: offense[:location][:start_column]
-          }
-        end
+      offense_output = parsed_result[:files].select { |issue| issue[:offenses].present? }
+                                            .each_with_object([]) do |issue, acc|
+        acc << {
+          file_path: issue[:path],
+          messages: issue[:offenses].map do |msg|
+            {
+              rule_id: msg[:cop_name],
+              message: msg[:message],
+              line: msg[:location][:start_line],
+              column: msg[:location][:start_column]
+            }
+          end
+        }
       end
       { issues: offense_output, issues_count: parsed_result[:summary][:offense_count] }
     end
