@@ -1,6 +1,6 @@
 one:
   name: <%= Faker::Lorem.word %>
-  language: <%= Faker::ProgrammingLanguage.name %>
+  language: javascript
   user: one
   github_id: |
     <%= Faker::Number.number(digits: 5) %>
@@ -9,7 +9,7 @@ one:
 
 two:
   name: <%= Faker::Lorem.word %>
-  language: <%= Faker::ProgrammingLanguage.name %>
+  language: ruby
   user: two
   github_id: |
     <%= Faker::Number.number(digits: 5) %>

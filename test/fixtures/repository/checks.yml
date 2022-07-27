@@ -1,13 +1,13 @@
-ruby:
+javascript:
   repository: one
+  aasm_state: created
+  result: <%= File.read('test/fixtures/files/eslint_output.json') %>
+  passed: false
+  issues_count: 3
+
+ruby:
+  repository: two
   aasm_state: finished
   passed: false
   result: <%= File.read('test/fixtures/files/rubocop_output.json') %>
   issues_count: 1
-
-javascript:
-  repository: two
-  aasm_state: created
-  result: <%= File.read('test/fixtures/files/eslint_output.json') %>
-  passed: true
-  issues_count: 0

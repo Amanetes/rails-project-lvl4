@@ -15,17 +15,17 @@ module Web
       assert_response :success
     end
 
-    test 'should GET repositories#show' do
+    test 'should GET web/repositories#show' do
       get repository_url(@repository)
       assert_response :success
     end
 
-    test 'should GET repositories#new' do
+    test 'should GET web/repositories#new' do
       get new_repository_path
       assert_response :success
     end
 
-    test 'should POST repositories#create' do
+    test 'should POST web/repositories#create' do
       assert_difference 'Repository.count', 1 do
         post repositories_url, params: { repository:
                                          { github_id: 1234 } }
