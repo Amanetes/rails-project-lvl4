@@ -14,9 +14,10 @@ module Web
     def new
       @repository = current_user.repositories.build
       client = ApplicationContainer[:octokit_client_api].new(current_user.token)
+      available_languages = Repository.language.values
       @remote_repositories = client.repositories
                                    .select do |repo|
-        Repository.language.values.include?(repo[:language]&.downcase) &&
+        available_languages.include?(repo[:language]&.downcase) &&
           current_user.repositories.map(&:name).exclude?(repo[:name])
       end
     end

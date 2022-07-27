@@ -3,6 +3,7 @@ A project that helps to automatically monitor the quality of repositories on the
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Amanetes/rails-project-lvl4/workflows/hexlet-check/badge.svg)](https://github.com/Amanetes/rails-project-lvl4/actions)
+[![CI](https://github.com/Amanetes/rails-project-lvl4/actions/workflows/main.yml/badge.svg)](https://github.com/Amanetes/rails-project-lvl4/actions/workflows/main.yml)
 
 ## Installation
 
