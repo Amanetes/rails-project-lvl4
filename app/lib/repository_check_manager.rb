@@ -16,45 +16,45 @@ class RepositoryCheckManager
     end
 
     def run_eslint_check(path)
-      cmd = "npx eslint #{path} --config .eslintrc.yml --format json --no-eslintrc"
+      cmd = "node_modules/eslint/bin/eslint.js #{path} --config .eslintrc.yml --format json --no-eslintrc"
       output = BashRunner.run(cmd)
-      parsed_result = JSON.parse(output.presence || '[]')
-      offense_output = parsed_result.select { |issue| issue['errorCount'].positive? }
+      parsed_result = JSON.parse(output, symbolize_names: true)
+      offense_output = parsed_result.select { |issue| issue[:errorCount].positive? }
                                     .each_with_object([]) do |issue, acc|
         acc << {
-          file_path: issue['filePath'],
-          messages: issue['messages'].map do |msg|
+          file_path: issue[:filePath],
+          messages: issue[:messages].map do |msg|
             {
-              rule_id: msg['ruleId'],
-              message: msg['message'],
-              line: msg['line'],
-              column: msg['column']
+              rule_id: msg[:ruleId],
+              message: msg[:message],
+              line: msg[:line],
+              column: msg[:column]
             }
           end
         }
       end
-      { issues: offense_output, issues_count: parsed_result.reduce(0) { |acc, issue| acc + issue['errorCount'] } }
+      { issues: offense_output, issues_count: parsed_result.reduce(0) { |acc, issue| acc + issue[:errorCount] } }
     end
 
     def run_rubocop_check(path)
-      cmd = "rubocop #{path} --format json -c .rubocop.yml"
+      cmd = "bundle exec rubocop #{path} --format json -c .rubocop.yml"
       output = BashRunner.run(cmd)
-      parsed_result = JSON.parse(output.presence || '[]')
-      offense_output = parsed_result['files'].select { |issue| issue['offenses'].present? }
-                                             .each_with_object([]) do |issue, acc|
+      parsed_result = JSON.parse(output, symbolize_names: true)
+      offense_output = parsed_result[:files].select { |issue| issue[:offenses].present? }
+                                            .each_with_object([]) do |issue, acc|
         acc << {
-          file_path: issue['path'],
-          messages: issue['offenses'].map do |msg|
+          file_path: issue[:path],
+          messages: issue[:offenses].map do |msg|
             {
-              rule_id: msg['cop_name'],
-              message: msg['message'],
-              line: msg['location']['start_line'],
-              column: msg['location']['start_column']
+              rule_id: msg[:cop_name],
+              message: msg[:message],
+              line: msg[:location][:start_line],
+              column: msg[:location][:start_column]
             }
           end
         }
       end
-      { issues: offense_output, issues_count: parsed_result['summary']['offense_count'] }
+      { issues: offense_output, issues_count: parsed_result[:summary][:offense_count] }
     end
   end
 end
