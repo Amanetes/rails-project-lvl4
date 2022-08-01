@@ -15,12 +15,10 @@ module Web
       @repository = current_user.repositories.build
       client = ApplicationContainer[:octokit_client_api].new(current_user.token)
       available_languages = Repository.language.values
-      @remote_repositories = Rails.cache.fetch("#{current_user.id}_repositories", expires_in: 12.hours) do
-        client.repositories.select { |repo| repo[:language].present? }
-              .select do |repo|
-          available_languages.include?(repo[:language]&.downcase) &&
-            current_user.repositories.map(&:name).exclude?(repo[:name])
-        end
+      @remote_repositories = client.repositories.select { |repo| repo[:language].present? }
+                                   .select do |repo|
+        available_languages.include?(repo[:language]&.downcase) &&
+          current_user.repositories.map(&:name).exclude?(repo[:name])
       end
     end
 
