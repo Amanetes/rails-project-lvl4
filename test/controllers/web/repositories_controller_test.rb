@@ -21,7 +21,7 @@ module Web
     end
 
     test 'should GET web/repositories#new' do
-      get new_repository_path
+      get new_repository_url
       assert_response :success
     end
 

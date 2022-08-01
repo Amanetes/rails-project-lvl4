@@ -5,7 +5,9 @@
   .form-inputs
   = f.input :github_id,
           as: :select,
-          collection: @remote_repositories, value_method: :id, label_method: :name,
+          collection: @remote_repositories,
+          value_method: :id,
+          label_method: :full_name,
           required: false,
           hint: :default
 
