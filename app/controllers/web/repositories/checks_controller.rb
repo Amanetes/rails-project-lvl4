@@ -16,7 +16,7 @@ module Web
           redirect_to @resource_repository
         else
           flash.now[:error] = t('.error')
-          render 'web/repositories/checks/show'
+          render :show
         end
       end
 
