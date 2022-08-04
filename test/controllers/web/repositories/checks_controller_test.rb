@@ -14,17 +14,15 @@ module Web
         @check = repository_checks(:javascript)
       end
 
-      test 'should GET web/repositories/checks#show' do
+      test 'should show repository check' do
         get repository_check_url(@repository, @check)
         assert_response :success
       end
 
-      test 'should GET web/repositories/checks#create' do
+      test 'should create repository check' do
         post repository_checks_url(@repository)
-
         assert_response :redirect
-        assert_enqueued_with(job: RepositoryCheckJob)
-        assert { @repository.checks.last.passed? == false }
+        assert { @repository.checks.last.passed? == true }
       end
     end
   end
